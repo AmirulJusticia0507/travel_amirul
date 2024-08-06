@@ -44,7 +44,7 @@ $usersid = isset($_SESSION['usersid']) ? $_SESSION['usersid'] : '';
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #2c3e50; color: #ecf0f1;">
     <!-- Tambahkan konten sidebar AdminLTE di sini -->
     <a href="index.php?page=dashboard" class="brand-link">
-        <center><span class="brand-text font-weight-light"> <img src="img/erpsystems.png" alt="" style="width:150px;"></span></center>
+        <center><span class="brand-text font-weight-light"> <img src="img/travelku.png" alt="" style="width:150px;"></span></center>
     </a>
     <div class="sidebar">
         <ul class="nav nav-pills nav-sidebar flex-column nowrap" data-widget="treeview" role="menu" data-accordion="false">
@@ -56,81 +56,51 @@ $usersid = isset($_SESSION['usersid']) ? $_SESSION['usersid'] : '';
             </li>
             <li class="nav-header">MAIN NAVIGATION</li>
             <li class="nav-item">
-                <a href="accounts.php?page=accounts" class="nav-link <?php echo isPageActive('accounts'); ?>">
-                    <i class="fa fa-book nav-icon"></i>
-                    <p>Accounts</p>
+                <a href="buses.php?page=buses" class="nav-link <?php echo isPageActive('buses'); ?>">
+                    <i class="fa fa-bus nav-icon"></i>
+                    <p>Buses</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="customers.php?page=customers" class="nav-link <?php echo isPageActive('customers'); ?>">
-                    <i class="fa fa-users nav-icon"></i>
-                    <p>Customers</p>
+                <a href="cars.php?page=cars" class="nav-link <?php echo isPageActive('cars'); ?>">
+                    <i class="fa fa-car nav-icon"></i>
+                    <p>Cars</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="departments.php?page=departments" class="nav-link <?php echo isPageActive('departments'); ?>">
-                    <i class="fa fa-building nav-icon"></i>
-                    <p>Departments</p>
+                <a href="trips.php?page=trips" class="nav-link <?php echo isPageActive('trips'); ?>">
+                    <i class="fa fa-map nav-icon"></i>
+                    <p>Trips</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="employees.php?page=employees" class="nav-link <?php echo isPageActive('employees'); ?>">
-                    <i class="fa fa-user nav-icon"></i>
-                    <p>Employees</p>
+                <a href="reservations.php?page=reservations" class="nav-link <?php echo isPageActive('reservations'); ?>">
+                    <i class="fa fa-ticket-alt nav-icon"></i>
+                    <p>Reservations</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="financial_transactions.php?page=financial_transactions" class="nav-link <?php echo isPageActive('financial_transactions'); ?>">
-                    <i class="fa fa-exchange-alt nav-icon"></i>
-                    <p>Financial Transactions</p>
+                <a href="drivers.php?page=drivers" class="nav-link <?php echo isPageActive('drivers'); ?>">
+                    <i class="fa fa-id-card nav-icon"></i>
+                    <p>Drivers</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="product_categories.php?page=product_categories" class="nav-link <?php echo isPageActive('product_categories'); ?>">
-                    <i class="fa fa-tags nav-icon"></i>
-                    <p>Product Categories</p>
+                <a href="payments.php?page=payments" class="nav-link <?php echo isPageActive('payments'); ?>">
+                    <i class="fa fa-credit-card nav-icon"></i>
+                    <p>Payments</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="products.php?page=products" class="nav-link <?php echo isPageActive('products'); ?>">
-                    <i class="fa fa-box nav-icon"></i>
-                    <p>Products</p>
+                <a href="feedbacks.php?page=feedbacks" class="nav-link <?php echo isPageActive('feedbacks'); ?>">
+                    <i class="fa fa-comments nav-icon"></i>
+                    <p>Feedbacks</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="purchase_details.php?page=purchase_details" class="nav-link <?php echo isPageActive('purchase_details'); ?>">
-                    <i class="fa fa-list-alt nav-icon"></i>
-                    <p>Purchase Details</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="purchases.php?page=purchases" class="nav-link <?php echo isPageActive('purchases'); ?>">
-                    <i class="fa fa-shopping-cart nav-icon"></i>
-                    <p>Purchases</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="invoices.php?page=invoices" class="nav-link <?php echo isPageActive('invoices'); ?>">
-                    <i class="fa fa-file-lines nav-icon"></i>
-                    <p>Invoices</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="sales.php?page=sales" class="nav-link <?php echo isPageActive('sales'); ?>">
-                    <i class="fa fa-chart-line nav-icon"></i>
-                    <p>Sales</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="sales_details.php?page=sales_details" class="nav-link <?php echo isPageActive('sales_details'); ?>">
-                    <i class="fa fa-receipt nav-icon"></i>
-                    <p>Sales Details</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="vendors.php?page=vendors" class="nav-link <?php echo isPageActive('vendors'); ?>">
-                    <i class="fa fa-truck nav-icon"></i>
-                    <p>Vendors</p>
+                <a href="user_management.php?page=user_management" class="nav-link <?php echo isPageActive('user_management'); ?>">
+                    <i class="fa fa-users-cog nav-icon"></i>
+                    <p>User Management</p>
                 </a>
             </li>
             <li class="nav-item">
@@ -142,6 +112,7 @@ $usersid = isset($_SESSION['usersid']) ? $_SESSION['usersid'] : '';
         </ul>
     </div>
 </aside>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

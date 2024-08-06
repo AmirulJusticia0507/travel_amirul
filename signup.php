@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $token = generateToken();
 
     // Query untuk menyimpan user baru ke database
-    $query = "INSERT INTO db_erp_systems.users (Username, PASSWORD, FullName, created_at, status, tokenize) VALUES (?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO db_travelku.users (Username, PASSWORD, FullName, created_at, status, tokenize) VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $koneklocalhost->prepare($query);
     $stmt->bind_param("ssssss", $username, $hashedPassword, $fullname, $created_at, $role, $token);
     
@@ -57,7 +57,7 @@ function generateToken($length = 32)
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
     <title>Signup </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="icon" href="img/erpsystems.png" type="image/png">
+    <link rel="icon" href="img/travelku.png" type="image/png">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
         *{
@@ -183,7 +183,7 @@ function generateToken($length = 32)
 <body>
     <div class="content">
         <div class="col-md-6" align="center">
-            <img src="img/erpsystems.png" alt="Image" class="img-fluid" style="width:100%">
+            <img src="img/travelku.png" alt="Image" class="img-fluid" style="width:100%">
         </div>
         <div class="text">Signup <br><span style="color:green"></span></div>
         <form action="#" method="post" onsubmit="return validateForm()">

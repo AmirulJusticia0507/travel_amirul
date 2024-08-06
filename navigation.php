@@ -11,65 +11,65 @@ if (isset($_GET['page'])) {
             }
             break;
         
-        case 'accounts':
-            if ($currentPage !== 'accounts.php') {
-                header("Location: accounts.php?page=accounts");
+        case 'buses':
+            if ($currentPage !== 'buses.php') {
+                header("Location: buses.php?page=buses");
                 exit;
             }
             break;
             
-        case 'customers':
-            if ($currentPage !== 'customers.php') {
-                header("Location: customers.php?page=customers");
+        case 'cars':
+            if ($currentPage !== 'cars.php') {
+                header("Location: cars.php?page=cars");
                 exit;
             }
             break;
 
-        case 'departments':
-            if ($currentPage !== 'departments.php') {
-                header("Location: departments.php?page=departments");
+        case 'drivers':
+            if ($currentPage !== 'drivers.php') {
+                header("Location: drivers.php?page=drivers");
                 exit;
             }
             break;
 
-        case 'employees':
-            if ($currentPage !== 'employees.php') {
-                header("Location: employees.php?page=employees");
+        case 'feedbacks':
+            if ($currentPage !== 'feedbacks.php') {
+                header("Location: feedbacks.php?page=feedbacks");
                 exit;
             }
             break;
 
-        case 'financial_transactions':
-            if ($currentPage !== 'financial_transactions.php') {
-                header("Location: financial_transactions.php?page=financial_transactions");
+        case 'payments':
+            if ($currentPage !== 'payments.php') {
+                header("Location: payments.php?page=payments");
                 exit;
             }
             break;
 
-        case 'product_categories':
-            if ($currentPage !== 'product_categories.php') {
-                header("Location: product_categories.php?page=product_categories");
+        case 'reservations':
+            if ($currentPage !== 'reservations.php') {
+                header("Location: reservations.php?page=reservations");
                 exit;
             }
             break;
 
-        case 'products':
-            if ($currentPage !== 'products.php') {
-                header("Location: products.php?page=products");
+        case 'trips':
+            if ($currentPage !== 'trips.php') {
+                header("Location: trips.php?page=trips");
                 exit;
             }
             break;
 
-        case 'purchase_details':
-            if ($currentPage !== 'purchase_details.php') {
-                header("Location: purchase_details.php?page=purchase_details");
+        case 'user_management':
+            if ($currentPage !== 'user_management.php') {
+                header("Location: user_management.php?page=user_management");
                 exit;
             }
             break;
 
-        case 'purchases':
-            if ($currentPage !== 'purchases.php') {
-                header("Location: purchases.php?page=purchases");
+        case 'invoices':
+            if ($currentPage !== 'invoices.php') {
+                header("Location: invoices.php?page=invoices");
                 exit;
             }
             break;
@@ -95,58 +95,9 @@ if (isset($_GET['page'])) {
             }
             break;
 
-        case 'productmanagement':
-            if ($currentPage !== 'productmanagement.php') {
-                header("Location: productmanagement.php?page=productmanagement");
-                exit;
-            }
-            break;
-
-        case 'cart':
-            if ($currentPage !== 'cart.php') {
-                header("Location: cart.php?page=cart");
-                exit;
-            }
-            break;
-
-        case 'profile':
-            if ($currentPage !== 'profile.php') {
-                header("Location: profile.php?page=profile");
-                exit;
-            }
-            break;
-
-        case 'categories':
-            if ($currentPage !== 'categories.php') {
-                header("Location: categories.php?page=categories");
-                exit;
-            }
-            break;
-
-        case 'brands':
-            if ($currentPage !== 'brands.php') {
-                header("Location: brands.php?page=brands");
-                exit;
-            }
-            break;
-
-        case 'catalog':
-            if ($currentPage !== 'catalog.php') {
-                header("Location: catalog.php?page=catalog");
-                exit;
-            }
-            break;
-
-        case 'riwayattransaksi':
-            if ($currentPage !== 'riwayattransaksi.php') {
-                header("Location: riwayattransaksi.php?page=riwayattransaksi");
-                exit;
-            }
-            break;
-
-        case 'wishlist':
-            if ($currentPage !== 'wishlist.php') {
-                header("Location: wishlist.php?page=wishlist");
+        case 'logout':
+            if ($currentPage !== 'logout.php') {
+                header("Location: logout.php?page=logout");
                 exit;
             }
             break;

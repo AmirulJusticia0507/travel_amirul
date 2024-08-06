@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = cleanInput($_POST['password']);
 
     // Query untuk mencari user berdasarkan username atau fullname
-    $query = "SELECT userid, username, password, fullname, status FROM db_erp_systems.users WHERE username = ? OR fullname = ?";
+    $query = "SELECT userid, username, password, fullname, status FROM db_travelku.users WHERE username = ? OR fullname = ?";
     $stmt = $koneklocalhost->prepare($query);
     $stmt->bind_param("ss", $usernameOrFullname, $usernameOrFullname);
     $stmt->execute();
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $token = generateToken();
 
             // Simpan token dan update login_date ke dalam database
-            $updateQuery = "UPDATE db_erp_systems.users SET login_date = ?, tokenize = ? WHERE userid = ?";
+            $updateQuery = "UPDATE db_travelku.users SET login_date = ?, tokenize = ? WHERE userid = ?";
             $updateStmt = $koneklocalhost->prepare($updateQuery);
             $updateStmt->bind_param("ssi", $login_date, $token, $row['userid']);
             $updateStmt->execute();
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <div class="content">
         <div class="col-md-6" align="center">
-            <img src="img/erpsystems.png" alt="Image" class="img-fluid" style="width:100%">
+            <img src="img/travelku.png" alt="Image" class="img-fluid" style="width:100%">
         </div>
         <div class="text">Login <br><span style="color:green"></span></div>
         <form action="#" method="post">

@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usernameOrFullname = cleanInput($_POST['usernameOrFullname']);
 
     // Query untuk mencari user berdasarkan username atau fullname
-    $query = "SELECT userid, username, fullname FROM db_erp_systems.users WHERE username = ? OR fullname = ?";
+    $query = "SELECT userid, username, fullname FROM db_travelku.users WHERE username = ? OR fullname = ?";
     $stmt = $koneklocalhost->prepare($query);
     $stmt->bind_param("ss", $usernameOrFullname, $usernameOrFullname);
     $stmt->execute();
@@ -42,7 +42,7 @@ function cleanInput($input)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forgot Password </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <link rel="icon" href="img/erpsystems.png" type="image/png">
+    <link rel="icon" href="img/travelku.png" type="image/png">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
         *{
@@ -168,7 +168,7 @@ function cleanInput($input)
 <body>
     <div class="content">
         <div class="col-md-6" align="center">
-            <img src="img/erpsystems.png" alt="Image" class="img-fluid" style="width:100%">
+            <img src="img/travelku.png" alt="Image" class="img-fluid" style="width:100%">
         </div>
         <div class="text">Forgot Password <span style="color:green"></span></div>
         <form action="#" method="post">

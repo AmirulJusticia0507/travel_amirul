@@ -9,7 +9,7 @@ if (isset($_SESSION['userid'])) {
     $logoutDate = date('Y-m-d H:i:s');
     $userId = $_SESSION['userid'];
 
-    $updateQuery = "UPDATE db_erp_systems.users SET logout_date = ? WHERE userid = ?";
+    $updateQuery = "UPDATE db_travelku.users SET logout_date = ? WHERE userid = ?";
     $updateStmt = $koneklocalhost->prepare($updateQuery);
     $updateStmt->bind_param("si", $logoutDate, $userId);
     $updateStmt->execute();

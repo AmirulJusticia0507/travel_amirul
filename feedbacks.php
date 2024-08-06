@@ -9,11 +9,6 @@ if (!isset($_SESSION['userid'])) {
     exit;
 }
 
-// Query untuk mendapatkan jumlah data
-$buses_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM buses")->fetch_assoc()['count'];
-$cars_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM cars")->fetch_assoc()['count'];
-$drivers_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM drivers")->fetch_assoc()['count'];
-$reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM reservations")->fetch_assoc()['count'];
 
 
 ?>
@@ -23,7 +18,7 @@ $reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM rese
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Dashboard - Travelku</title>
+    <title>Feedback - Travelku</title>
     <!-- Tambahkan link Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Tambahkan link AdminLTE CSS -->
@@ -115,74 +110,13 @@ $reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM rese
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php?page=dashboard">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item active" aria-current="page">Feedback</li>
                     </ol>
                 </nav>
                 <?php
                 include 'navigation.php';
                 ?>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- Small boxes (Stat box) -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3><?php echo $buses_count; ?></h3>
-                                    <p>Buses</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-bus"></i>
-                                </div>
-                                <a href="buses.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3><?php echo $cars_count; ?></h3>
-                                    <p>Cars</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-car"></i>
-                                </div>
-                                <a href="cars.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3><?php echo $drivers_count; ?></h3>
-                                    <p>Drivers</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-id-card"></i>
-                                </div>
-                                <a href="drivers.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3><?php echo $reservations_count; ?></h3>
-                                    <p>Reservations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-book"></i>
-                                </div>
-                                <a href="reservations.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                    </div>
-                </div>
             </main>
         </div>
     </div>

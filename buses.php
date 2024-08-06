@@ -9,11 +9,6 @@ if (!isset($_SESSION['userid'])) {
     exit;
 }
 
-// Query untuk mendapatkan jumlah data
-$buses_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM buses")->fetch_assoc()['count'];
-$cars_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM cars")->fetch_assoc()['count'];
-$drivers_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM drivers")->fetch_assoc()['count'];
-$reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM reservations")->fetch_assoc()['count'];
 
 
 ?>
@@ -23,7 +18,7 @@ $reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM rese
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Dashboard - Travelku</title>
+    <title>Bus - Travelku</title>
     <!-- Tambahkan link Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Tambahkan link AdminLTE CSS -->
@@ -92,7 +87,55 @@ $reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM rese
             padding: 5px;
             height: 150px;
         }
+    </style>
+    <style>
+        /* Bus Seat Layout CSS */
+        .bus {
+            width: 60%;
+            margin: auto;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
 
+        .row {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .seat-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .seat {
+            width: 50px;
+            height: 50px;
+            background-color: #28a745;
+            color: #fff;
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .seat:hover {
+            background-color: #218838;
+        }
+
+        .driver {
+            margin-bottom: 20px;
+        }
+
+        .driver-seat {
+            background-color: #ffc107;
+            color: #000;
+            cursor: default;
+        }
     </style>
 </head>
 
@@ -115,74 +158,99 @@ $reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM rese
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php?page=dashboard">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        <li class="breadcrumb-item active" aria-current="page">Bus</li>
                     </ol>
                 </nav>
                 <?php
                 include 'navigation.php';
                 ?>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- Small boxes (Stat box) -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h3><?php echo $buses_count; ?></h3>
-                                    <p>Buses</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-bus"></i>
-                                </div>
-                                <a href="buses.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                <!-- Bus Type Selection -->
+                <div class="container mt-4">
+                    <h3 class="text-center">Bus Seat Layout</h3>
+                    <div class="form-group">
+                        <label for="busType">Select Bus Type:</label>
+                        <select class="form-control" id="busType">
+                            <option value="regular">Regular Bus (60 seats)</option>
+                            <option value="travel">Travel Bus</option>
+                        </select>
+                    </div>
+
+                    <!-- Regular Bus Seat Layout -->
+                    <div id="regularBus" class="bus d-none">
+                        <div class="row driver">
+                            <div class="col-12 text-end">
+                                <div class="seat driver-seat">Driver</div>
                             </div>
                         </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h3><?php echo $cars_count; ?></h3>
-                                    <p>Cars</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-car"></i>
-                                </div>
-                                <a href="cars.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php for ($i = 1; $i <= 15; $i++): ?>
+                        <div class="row">
+                            <div class="col-6 seat-row">
+                                <div class="seat"><?= $i * 4 - 3 ?>A</div>
+                                <div class="seat"><?= $i * 4 - 2 ?>B</div>
+                            </div>
+                            <div class="col-6 seat-row">
+                                <div class="seat"><?= $i * 4 - 1 ?>C</div>
+                                <div class="seat"><?= $i * 4 ?>D</div>
                             </div>
                         </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-warning">
-                                <div class="inner">
-                                    <h3><?php echo $drivers_count; ?></h3>
-                                    <p>Drivers</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-id-card"></i>
-                                </div>
-                                <a href="drivers.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <?php endfor; ?>
+                    </div>
+
+                    <!-- Travel Bus Seat Layout -->
+                    <div id="travelBus" class="bus d-none">
+                        <div class="row driver">
+                            <div class="col-12 text-end">
+                                <div class="seat driver-seat">Driver</div>
                             </div>
                         </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-danger">
-                                <div class="inner">
-                                    <h3><?php echo $reservations_count; ?></h3>
-                                    <p>Reservations</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="fa fa-book"></i>
-                                </div>
-                                <a href="reservations.php" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <!-- 3 rows of seats with 2-2 configuration -->
+                        <?php for ($i = 1; $i <= 3; $i++): ?>
+                        <div class="row">
+                            <div class="col-6 seat-row">
+                                <div class="seat"><?= $i * 4 - 3 ?>A</div>
+                                <div class="seat"><?= $i * 4 - 2 ?>B</div>
+                            </div>
+                            <div class="col-6 seat-row">
+                                <div class="seat"><?= $i * 4 - 1 ?>C</div>
+                                <div class="seat"><?= $i * 4 ?>D</div>
                             </div>
                         </div>
-                        <!-- ./col -->
+                        <?php endfor; ?>
+                        <!-- Additional seats for travel bus -->
+                        <div class="row">
+                            <div class="col-3 seat-row">
+                                <div class="seat">10A</div>
+                            </div>
+                            <div class="col-9 seat-row">
+                                <div class="seat">10B</div>
+                                <div class="seat">10C</div>
+                                <div class="seat">10D</div>
+                            </div>
+                        </div>
+                        <?php for ($i = 11; $i <= 14; $i++): ?>
+                        <div class="row">
+                            <div class="col-3 seat-row">
+                                <div class="seat"><?= $i ?>A</div>
+                            </div>
+                            <div class="col-9 seat-row">
+                                <div class="seat"><?= $i ?>B</div>
+                                <div class="seat"><?= $i ?>C</div>
+                                <div class="seat"><?= $i ?>D</div>
+                            </div>
+                        </div>
+                        <?php endfor; ?>
+                        <div class="row">
+                            <div class="col-12 seat-row">
+                                <div class="seat">15A</div>
+                                <div class="seat">15B</div>
+                                <div class="seat">15C</div>
+                                <div class="seat">15D</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </main>
         </div>
     </div>
@@ -205,6 +273,7 @@ $reservations_count = $koneklocalhost->query("SELECT COUNT(*) AS count FROM rese
             });
         });
     </script>
+    
 
 </body>
 </html>
