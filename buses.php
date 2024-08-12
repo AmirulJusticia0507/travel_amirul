@@ -88,55 +88,7 @@ if (!isset($_SESSION['userid'])) {
             height: 150px;
         }
     </style>
-    <style>
-        /* Bus Seat Layout CSS */
-        .bus {
-            width: 60%;
-            margin: auto;
-            border: 1px solid #ddd;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
 
-        .row {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .seat-row {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .seat {
-            width: 50px;
-            height: 50px;
-            background-color: #28a745;
-            color: #fff;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 2px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .seat:hover {
-            background-color: #218838;
-        }
-
-        .driver {
-            margin-bottom: 20px;
-        }
-
-        .driver-seat {
-            background-color: #ffc107;
-            color: #000;
-            cursor: default;
-        }
-    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -165,87 +117,123 @@ if (!isset($_SESSION['userid'])) {
                 include 'navigation.php';
                 ?>
 
-                <!-- Bus Type Selection -->
-                <div class="container mt-4">
-                    <h3 class="text-center">Bus Seat Layout</h3>
-                    <div class="form-group">
-                        <label for="busType">Select Bus Type:</label>
-                        <select class="form-control" id="busType">
-                            <option value="regular">Regular Bus (60 seats)</option>
-                            <option value="travel">Travel Bus</option>
-                        </select>
-                    </div>
+                    <h2>Data Bus</h2>
+                    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#addBusModal">Tambah Bus</button>
+                    <table id="busTable" class="display table table-bordered table-striped table-hover responsive nowrap" style="width:100%" >
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nomor Polisi</th>
+                                <th>Merk</th>
+                                <th>Model</th>
+                                <th>Tahun</th>
+                                <th>Kapasitas</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Data will be populated by jQuery -->
+                        </tbody>
+                    </table>
 
-                    <!-- Regular Bus Seat Layout -->
-                    <div id="regularBus" class="bus d-none">
-                        <div class="row driver">
-                            <div class="col-12 text-end">
-                                <div class="seat driver-seat">Driver</div>
+                <!-- Add Bus Modal -->
+                <div class="modal fade" id="addBusModal" tabindex="-1" aria-labelledby="addBusModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addBusModalLabel">Tambah Bus</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addBusForm">
+                                    <div class="mb-3">
+                                        <label for="addNomorPolisi" class="form-label">Nomor Polisi</label>
+                                        <input type="text" class="form-control" id="addNomorPolisi" name="nomor_polisi" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addMerk" class="form-label">Merk</label>
+                                        <input type="text" class="form-control" id="addMerk" name="merk" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addModel" class="form-label">Model</label>
+                                        <input type="text" class="form-control" id="addModel" name="model" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addTahun" class="form-label">Tahun</label>
+                                        <input type="text" class="form-control" id="addTahun" name="tahun" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addKapasitas" class="form-label">Kapasitas</label>
+                                        <input type="number" class="form-control" id="addKapasitas" name="kapasitas" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="addStatus" class="form-label">Status</label>
+                                        <input type="text" class="form-control" id="addStatus" name="status" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
+                                </form>
                             </div>
                         </div>
-                        <?php for ($i = 1; $i <= 15; $i++): ?>
-                        <div class="row">
-                            <div class="col-6 seat-row">
-                                <div class="seat"><?= $i * 4 - 3 ?>A</div>
-                                <div class="seat"><?= $i * 4 - 2 ?>B</div>
-                            </div>
-                            <div class="col-6 seat-row">
-                                <div class="seat"><?= $i * 4 - 1 ?>C</div>
-                                <div class="seat"><?= $i * 4 ?>D</div>
-                            </div>
-                        </div>
-                        <?php endfor; ?>
                     </div>
+                </div>
 
-                    <!-- Travel Bus Seat Layout -->
-                    <div id="travelBus" class="bus d-none">
-                        <div class="row driver">
-                            <div class="col-12 text-end">
-                                <div class="seat driver-seat">Driver</div>
+                <!-- Edit Bus Modal -->
+                <div class="modal fade" id="editBusModal" tabindex="-1" aria-labelledby="editBusModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editBusModalLabel">Edit Bus</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="editBusForm">
+                                    <input type="hidden" id="editBusId" name="id">
+                                    <div class="mb-3">
+                                        <label for="editNomorPolisi" class="form-label">Nomor Polisi</label>
+                                        <input type="text" class="form-control" id="editNomorPolisi" name="nomor_polisi" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editMerk" class="form-label">Merk</label>
+                                        <input type="text" class="form-control" id="editMerk" name="merk" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editModel" class="form-label">Model</label>
+                                        <input type="text" class="form-control" id="editModel" name="model" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editTahun" class="form-label">Tahun</label>
+                                        <input type="text" class="form-control" id="editTahun" name="tahun" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editKapasitas" class="form-label">Kapasitas</label>
+                                        <input type="number" class="form-control" id="editKapasitas" name="kapasitas" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="editStatus" class="form-label">Status</label>
+                                        <input type="text" class="form-control" id="editStatus" name="status" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                </form>
                             </div>
                         </div>
-                        <!-- 3 rows of seats with 2-2 configuration -->
-                        <?php for ($i = 1; $i <= 3; $i++): ?>
-                        <div class="row">
-                            <div class="col-6 seat-row">
-                                <div class="seat"><?= $i * 4 - 3 ?>A</div>
-                                <div class="seat"><?= $i * 4 - 2 ?>B</div>
+                    </div>
+                </div>
+
+                <!-- Delete Bus Modal -->
+                <div class="modal fade" id="deleteBusModal" tabindex="-1" aria-labelledby="deleteBusModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="deleteBusModalLabel">Hapus Bus</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="col-6 seat-row">
-                                <div class="seat"><?= $i * 4 - 1 ?>C</div>
-                                <div class="seat"><?= $i * 4 ?>D</div>
-                            </div>
-                        </div>
-                        <?php endfor; ?>
-                        <!-- Additional seats for travel bus -->
-                        <div class="row">
-                            <div class="col-3 seat-row">
-                                <div class="seat">10A</div>
-                            </div>
-                            <div class="col-9 seat-row">
-                                <div class="seat">10B</div>
-                                <div class="seat">10C</div>
-                                <div class="seat">10D</div>
-                            </div>
-                        </div>
-                        <?php for ($i = 11; $i <= 14; $i++): ?>
-                        <div class="row">
-                            <div class="col-3 seat-row">
-                                <div class="seat"><?= $i ?>A</div>
-                            </div>
-                            <div class="col-9 seat-row">
-                                <div class="seat"><?= $i ?>B</div>
-                                <div class="seat"><?= $i ?>C</div>
-                                <div class="seat"><?= $i ?>D</div>
-                            </div>
-                        </div>
-                        <?php endfor; ?>
-                        <div class="row">
-                            <div class="col-12 seat-row">
-                                <div class="seat">15A</div>
-                                <div class="seat">15B</div>
-                                <div class="seat">15C</div>
-                                <div class="seat">15D</div>
+                            <div class="modal-body">
+                                <p>Apakah Anda yakin ingin menghapus bus ini?</p>
+                                <form id="deleteBusForm">
+                                    <input type="hidden" id="deleteBusId" name="id">
+                                    <button type="submit" class="btn btn-danger">Hapus</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -261,6 +249,9 @@ if (!isset($_SESSION['userid'])) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/js/adminlte.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>    
 <!-- Tambahkan Select2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
@@ -273,7 +264,97 @@ if (!isset($_SESSION['userid'])) {
             });
         });
     </script>
-    
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            var table = $('#busTable').DataTable({
+                "ajax": "fetch_buses.php",
+                "columns": [
+                    { "data": "id" },
+                    { "data": "nomor_polisi" },
+                    { "data": "merk" },
+                    { "data": "model" },
+                    { "data": "tahun" },
+                    { "data": "kapasitas" },
+                    { "data": "status" },
+                    { "data": null, "render": function (data, type, row) {
+                        return '<button class="btn btn-warning btn-sm editBtn" data-bs-toggle="modal" data-bs-target="#editBusModal" data-id="'+row.id+'" data-nomor_polisi="'+row.nomor_polisi+'" data-merk="'+row.merk+'" data-model="'+row.model+'" data-tahun="'+row.tahun+'" data-kapasitas="'+row.kapasitas+'" data-status="'+row.status+'">Edit</button>' +
+                               '<button class="btn btn-danger btn-sm deleteBtn" data-bs-toggle="modal" data-bs-target="#deleteBusModal" data-id="'+row.id+'">Delete</button>';
+                    }}
+                ]
+            });
+
+            // Add Bus
+            $('#addBusForm').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'add_bus.php',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#addBusModal').modal('hide');
+                        table.ajax.reload();
+                    }
+                });
+            });
+
+            // Edit Bus
+            $('#editBusModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+                var nomor_polisi = button.data('nomor_polisi');
+                var merk = button.data('merk');
+                var model = button.data('model');
+                var tahun = button.data('tahun');
+                var kapasitas = button.data('kapasitas');
+                var status = button.data('status');
+
+                var modal = $(this);
+                modal.find('#editBusId').val(id);
+                modal.find('#editNomorPolisi').val(nomor_polisi);
+                modal.find('#editMerk').val(merk);
+                modal.find('#editModel').val(model);
+                modal.find('#editTahun').val(tahun);
+                modal.find('#editKapasitas').val(kapasitas);
+                modal.find('#editStatus').val(status);
+            });
+
+            $('#editBusForm').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'edit_bus.php',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#editBusModal').modal('hide');
+                        table.ajax.reload();
+                    }
+                });
+            });
+
+            // Delete Bus
+            $('#deleteBusModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+
+                var modal = $(this);
+                modal.find('#deleteBusId').val(id);
+            });
+
+            $('#deleteBusForm').on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'delete_bus.php',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        $('#deleteBusModal').modal('hide');
+                        table.ajax.reload();
+                    }
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
